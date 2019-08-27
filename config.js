@@ -1,10 +1,10 @@
 module.exports = {
 
     database: {
-        username: "root",
+        user: "root",
         password: "",
         host: "localhost",
-        db: "offmadrid"
+        database: "offmadrid"
     }
 
 }
