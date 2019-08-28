@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const db = require('./database/mysql');
 
 // Settings
 const app = express();
@@ -17,6 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/locations', require('./routes/locations'));
 
 // Init Server
-app.listen(PORT, () => {
-    console.log(`The app is running at http://localhost:${PORT}`);
-});
+db.connect(() => {
+    app.listen(PORT, () => {
+        console.log(`The app is running at http://localhost:${PORT}`);
+    });
+})
