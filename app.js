@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/locations', require('./routes/locations'));
+app.use('/events', require('./routes/events'));
 
 // Init Server
 db.connect(() => {
