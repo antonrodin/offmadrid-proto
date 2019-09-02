@@ -1,10 +1,10 @@
 module.exports = {
 
     database: {
-        user: "root",
-        password: "",
-        host: "localhost",
-        database: "offmadrid"
+        user: process.env.USER || "root",
+        password: process.env.PASSWORD || "",
+        host: process.env.HOST || "localhost",
+        database: process.env.DATABASE || "offmadrid"
     }
 
 }

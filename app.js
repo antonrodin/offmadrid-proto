@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const db = require('./database/mysql');
@@ -12,11 +13,12 @@ app.use(express.urlencoded({extended: false}));
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    res.send('Please use our awesome /api/locations endpoint');
 });
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/locations', require('./routes/locations'));
-app.use('/events', require('./routes/events'));
+app.use('/api/locations', require('./routes/locations'));
+app.use('/api/events', require('./routes/events'));
+app.use('/api/users', require('./routes/users'));
 
 // Init Server
 db.connect(() => {
