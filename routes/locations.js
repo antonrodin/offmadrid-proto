@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Location = require('../database/models/Location');
+const { auth } = require('../middlewares/auth');
 
 // Get all Locations
 router.get('/', (req, res) => {
@@ -18,21 +19,21 @@ router.get('/:id', (req, res) => {
 });
 
 // Insert Location
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
     Location.insert(req.body)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
 // Update Location
-router.put('/', (req, res) => {
+router.put('/', auth, (req, res) => {
     Location.update(req.body)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
 // Delete Location
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     let { id } = req.params;
     Location.delete(id)
         .then(result => res.json(result))

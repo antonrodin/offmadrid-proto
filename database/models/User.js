@@ -26,6 +26,16 @@ function getUserByEmail(email) {
     });
 }
 
+function getUserById(id) {
+    return new Promise((resolve, reject) => {
+        db.get().query('SELECT * FROM `users` WHERE `id` = ? LIMIT 1', [id], (err, rows) => {
+            if (err) reject(err);
+            if (rows.lenght == 0) resolve(null);
+            resolve(rows[0]);
+        });
+    });
+}
+
 /**
  * Create Token for Auth login
  * @param {Integer} user_id User ID
@@ -42,5 +52,6 @@ function createToken(user_id) {
 module.exports = {
     insert: insert,
     getUserByEmail: getUserByEmail,
+    getUserById: getUserById,
     createToken: createToken,
 };
