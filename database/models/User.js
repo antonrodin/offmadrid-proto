@@ -35,6 +35,15 @@ function find(id) {
     });
 }
 
+function findLocationsByUser(id) {
+    return new Promise((resolve, reject) => {
+        db.get().query("SELECT * FROM locations WHERE user_id=?", [ id ], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows);
+        });
+    });
+}
+
 function getUserById(id) {
     return new Promise((resolve, reject) => {
         db.get().query('SELECT * FROM `users` WHERE `id` = ? LIMIT 1', [id], (err, rows) => {
@@ -61,6 +70,7 @@ function createToken(user_id) {
 module.exports = {
     insert: insert,
     find: find,
+    findLocationsByUser: findLocationsByUser,
     getUserByEmail: getUserByEmail,
     getUserById: getUserById,
     createToken: createToken,

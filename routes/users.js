@@ -12,6 +12,13 @@ router.get('/:id', (req, res) => {
         .catch(err => res.json(err));
 });
 
+router.get('/:id/locations', (req, res) => {
+    let { id } = req.params;
+    User.findLocationsByUser(id)
+        .then(rows => res.json(rows))
+        .catch(err => res.json(err));
+});
+
 // Register User
 router.post('/register', (req, res) => {
 
