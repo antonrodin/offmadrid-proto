@@ -38,7 +38,10 @@ router.post('/login', (req, res) => {
                 if(!same) res.json({ err: "El email y la contraseña no coinciden" });
                 
                 // If no errors return new token
-                res.json({ token: User.createToken(user.id) });
+                res.json({ 
+                    token: User.createToken(user.id),
+                    user_id: user.id
+                 });
             });
 
         })
