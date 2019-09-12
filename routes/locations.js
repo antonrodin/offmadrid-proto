@@ -19,21 +19,21 @@ router.get('/:id', (req, res) => {
 });
 
 // Insert Location
-router.post('/', auth, (req, res) => {
+router.post('/', (req, res) => {
     Location.insert(req.body)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
 // Update Location
-router.put('/', auth, (req, res) => {
+router.put('/', (req, res) => {
     Location.update(req.body)
         .then(result => res.json(result))
         .catch(err => res.json(err));
 });
 
 // Delete Location
-router.delete('/:id', auth, (req, res) => {
+router.delete('/:id', (req, res) => {
     let { id } = req.params;
     Location.delete(id)
         .then(result => res.json(result))

@@ -13,7 +13,7 @@ function find(id) {
     return new Promise((resolve, reject) => {
         db.get().query("SELECT * FROM locations WHERE id=?", [ id ], (err, result) => {
             if (err) reject(err);
-            resolve(result);
+            resolve(result[0]);
         });
     });
 }

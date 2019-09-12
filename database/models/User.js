@@ -26,6 +26,15 @@ function getUserByEmail(email) {
     });
 }
 
+function find(id) {
+    return new Promise((resolve, reject) => {
+        db.get().query("SELECT * FROM users WHERE id=?", [ id ], (err, rows) => {
+            if (err) reject(err);
+            resolve(rows[0]);
+        });
+    });
+}
+
 function getUserById(id) {
     return new Promise((resolve, reject) => {
         db.get().query('SELECT * FROM `users` WHERE `id` = ? LIMIT 1', [id], (err, rows) => {
@@ -51,6 +60,7 @@ function createToken(user_id) {
 
 module.exports = {
     insert: insert,
+    find: find,
     getUserByEmail: getUserByEmail,
     getUserById: getUserById,
     createToken: createToken,

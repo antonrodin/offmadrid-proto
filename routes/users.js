@@ -3,6 +3,15 @@ const router = express.Router();
 const User = require('../database/models/User');
 const bcrypt = require('bcrypt');
 
+// Find User
+// Get Only One Event
+router.get('/:id', (req, res) => {
+    let { id } = req.params;
+    User.find(id)
+        .then(rows => res.json(rows))
+        .catch(err => res.json(err));
+});
+
 // Register User
 router.post('/register', (req, res) => {
 
