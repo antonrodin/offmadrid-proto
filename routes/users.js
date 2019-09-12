@@ -20,7 +20,10 @@ router.post('/register', (req, res) => {
     User.insert(req.body)
         .then(result => {
             let token = User.createToken(result.insertId);
-            res.json({ token: token });
+            res.json({ 
+                token: token,
+                user_id: result.insertId
+            });
         })
         .catch(err => res.json(err));
 });
