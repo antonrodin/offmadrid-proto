@@ -18,12 +18,12 @@ function find(id) {
     });
 }
 
-function insert({location_id, name, type, start_date, end_date, image, description, price}) {
+function insert({user_id, location_id, name, type, start_date, end_date, image, description, price}) {
     return new Promise((resolve, reject) => {
         
         let sql = "INSERT INTO events (user_id, location_id, name, type, start_date, end_date, image, description, price, created_at, updated_at) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        db.get().query(sql, [1, location_id, name, type, start_date, end_date, image, description, price, new Date(), new Date()], (err, result) => {
+        db.get().query(sql, [user_id, location_id, name, type, start_date, end_date, image, description, price, new Date(), new Date()], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });

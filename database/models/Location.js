@@ -18,12 +18,12 @@ function find(id) {
     });
 }
 
-function insert({name, image, description, type, cp, address, lat, lng, url, capacity, phone, email}) {
+function insert({user_id, name, image, description, type, cp, address, lat, lng, url, capacity, phone, email}) {
     return new Promise((resolve, reject) => {
         
         let sql = "INSERT INTO locations (user_id, name, image, description, type, city, cp, address, lat, lng, url, capacity, phone, email, created_at, updated_at) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        db.get().query(sql, [1, name, image, description, type, "Madrid", cp, address, lat, lng, url, capacity, phone, email, new Date(), new Date()], (err, result) => {
+        db.get().query(sql, [user_id, name, image, description, type, "Madrid", cp, address, lat, lng, url, capacity, phone, email, new Date(), new Date()], (err, result) => {
             if (err) reject(err);
             resolve(result);
         });
